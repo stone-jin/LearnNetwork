@@ -8,4 +8,8 @@
 版本1
 1.新建项目com.meibing.test1
 2.com.meibing.test1用于android网络变成学习
+
+版本2
+1.完成test1中使用HttpURLConnection和URL完成http://wap.sohu.com内容的获取
+2.util中添加了一个辅助工具
 ```

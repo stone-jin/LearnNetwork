@@ -34,6 +34,11 @@ public final class R {
         public static final int title_btn_2_after=0x7f020006;
         public static final int toolbar_up=0x7f020007;
     }
+    public static final class id {
+        public static final int Test1_content=0x7f070002;
+        public static final int Test1_title_open=0x7f070001;
+        public static final int Test1_title_reset=0x7f070000;
+    }
     public static final class layout {
         public static final int test1=0x7f030000;
     }
