@@ -12,12 +12,22 @@ import com.meibing.util.LogHelper;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.os.AsyncTask.Status;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+/*****
+ * 
+ * 普通方式获取网页信息
+ * 
+ * @author bing
+ *
+ */
 
 public class Test1 extends Activity {
 
@@ -25,6 +35,7 @@ public class Test1 extends Activity {
 	private Button Test1_title_reset;
 	private Button Test1_title_open;
 	private TextView Test1_content;
+	private Http_task http_task;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +64,12 @@ public class Test1 extends Activity {
 				Test1_content.setText("网站内容");
 				break;
 			case R.id.Test1_title_open:
-				new Http_task().execute();
+				if(http_task == null || http_task.getStatus() == Status.FINISHED){
+					http_task = new Http_task();
+					http_task.execute();
+				}else{
+					;
+				}
 				break;
 			}
 		}
@@ -76,7 +92,7 @@ public class Test1 extends Activity {
 			// TODO Auto-generated method stub
 			switch(values[0]){
 			case 0:
-				Test1_content.setText("正在努力获取网页信息");
+				Test1_content.setText("正在努力获取网页信息\n");
 				break;
 			case 1:
 				Test1_content.setText(content);
@@ -92,13 +108,12 @@ public class Test1 extends Activity {
 		}
 		
 		private void getWebContent(){
-			final String httpUrl = "http://wap.sohu.com";
+			final String httpUrl = "http://thinkpage.cn/weather/WeatherService.svc/GetChildLocations?id=ZJ&lang=zh-CHS&provider=SMART";
 			URL url = null;
 			try {
 				url = new URL(httpUrl);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
-				LogHelper.trace();
 				e.printStackTrace();
 			}
 			try {
@@ -117,7 +132,7 @@ public class Test1 extends Activity {
 				// TODO Auto-generated catch block
 				LogHelper.trace();
 				e.printStackTrace();
-			}
+			} 
 		}
 	}
 }
